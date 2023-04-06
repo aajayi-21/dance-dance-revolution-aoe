@@ -38,17 +38,11 @@ right_arrow_surface_rect = right_arrow_surface.get_rect(topleft = (768,10) )
 #create points surface
 points_surface = my_font.render("Points: placeholder", False, (0,0,0))
 
-
-''' PROBABLY DELETE
-#create up arrow
-up_arrow = pygame.image.load("up_arrow.png").convert_alpha()
-up_arrow = pygame.transform.scale(up_arrow, (112.33, 107.66))
-up_arrow_y = 720
-up_arrow_rect = up_arrow.get_rect(topleft=(512,720))
-#up_arrow = pygame.Rect
 '''
-
-
+This class defines the arrow object which are the moving arrows on the screen. Each arrow has an x position, y position,
+speed, and source image file. The class also defines to functions for arrows, 'spawn' which displays it on the screen,
+and 'delete' which makes it a clear image on the screen.
+'''
 class Arrow(pygame.sprite.Sprite):
     def __init__(self, x_pos, y_pos,speed,source):
         pygame.sprite.Sprite.__init__(self)
@@ -62,14 +56,19 @@ class Arrow(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (112.33, 107.66))
         screen.blit(self.image,self.rect)
         #print("spawned")
+    def delete(self):
+        self.image = pygame.image.load("clear_image.png")
 
 start_time = pygame.time.get_ticks()
 
 #CREATE ARROWS
 UP_arrow = Arrow(512,720,5,"up_arrow.png")
+DOWN_arrow = Arrow(640,720,5,"down_arrow.png")
+LEFT_arrow = Arrow(384,720,5,"left_arrow.png")
+RIGHT_arrow = Arrow(768,720,5,"right_arrow.png")
 
-#SONG. When what arrows should be spawned
-test_song = [(1000,'u')]
+#SONG. When what arrows should be spawned in ms. It takes 2366.66666... milliseconds to travel from bottom to arrow.
+test_song = [(1500,'u'), (3000,'d'), (5123,"l"), (6000, "r")]
 
 while True:
     for event in pygame.event.get():
@@ -87,21 +86,36 @@ while True:
 
     #Game Logic
     elapsed_time = pygame.time.get_ticks() - start_time
-    print(elapsed_time)
+    #print(elapsed_time)
     happening = []
     for note in test_song:
         if (note[0]) <= elapsed_time:
             if note[1] == 'u':
                 happening.append(UP_arrow)
                 UP_arrow.spawn()
-
-
-
-    pressed = (pygame.key.get_pressed(), elapsed_time)
+            if note[1] == 'd':
+                happening.append(DOWN_arrow)
+                DOWN_arrow.spawn()
+            if note[1] == 'l':
+                happening.append(LEFT_arrow)
+                LEFT_arrow.spawn()
+            if note[1] == 'r':
+                happening.append(RIGHT_arrow)
+                RIGHT_arrow.spawn()
 
     for note in happening:
         note.rect.y -= note.speed
         note.spawn()
+
+    if happening:
+        pressed = (pygame.key.get_pressed(), happening[-1].rect.y)
+        if pressed[0][pygame.K_SPACE]:
+            print(pressed[1])
+            if 20 > (pressed[1] - 10) > -10:
+                happening[-1].delete()
+                print("Good!")
+
+
 
     '''
     if up_arrow_rect.collidepoint(512,10) or pressed[0][pygame.K_w]:
