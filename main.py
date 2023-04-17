@@ -16,7 +16,6 @@ my_font = pygame.font.SysFont("Comic Sans MS", 30)
 screen = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("Dance Dance Revolution")
 clock = pygame.time.Clock()
-pygame.mixer.music.load("Roar Lion Roar.mp3", "mp3")
 
 '''
 This creates the main surface of the game; basically the game background.
@@ -76,7 +75,7 @@ class Arrow(pygame.sprite.Sprite):
 
 
 start_time = pygame.time.get_ticks()
-pygame.mixer.music.play()
+
 # SONG. When what arrows should be spawned in ms. It takes 2366.66666... milliseconds to travel from bottom to arrow.
 '''
 Songs will be in a list form. It will be a list of tuples where the first element is the time the arrow should 
