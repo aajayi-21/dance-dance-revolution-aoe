@@ -17,6 +17,7 @@ screen = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("Dance Dance Revolution")
 clock = pygame.time.Clock()
 pygame.mixer.music.load("Roar Lion Roar.mp3", "mp3")
+
 '''
 This creates the main surface of the game; basically the game background.
 '''
@@ -81,10 +82,35 @@ at the same speed so it is know how long it takes to reach the arrow indicator.
 test_song = [(0, 'u', Arrow(512, 720, 5, "up_arrow.png")), (1010, 'd', Arrow(640, 720, 5, "down_arrow.png")),
              (1516, "l", Arrow(384, 720, 5, "left_arrow.png")), (2010, "r", Arrow(768, 720, 5, "right_arrow.png")),
              (3341, 'u', Arrow(512, 720, 5, "up_arrow.png")), (3512, 'd', Arrow(640, 720, 5, "down_arrow.png")),
-             (3852, 'd', Arrow(640, 720, 5, "down_arrow.png")), (4025, 'u',Arrow(512, 720, 5, "up_arrow.png")),
+             (3852, 'r', Arrow(768, 720, 5, "right_arrow.png")), (4025, 'u',Arrow(512, 720, 5, "up_arrow.png")),
              (4342, 'l',Arrow(384, 720, 5, "left_arrow.png")), (4510, 'r', Arrow(768, 720, 5, "right_arrow.png")),
              (4848, 'd',Arrow(640, 720, 5, "down_arrow.png")), (5002, 'u', Arrow(512, 720, 5, "up_arrow.png")),
-             (5505, 'r', Arrow(768, 720, 5, "right_arrow.png")), (6022, 'l',Arrow(384, 720, 5, "left_arrow.png"))]
+             (5505, 'r', Arrow(768, 720, 5, "right_arrow.png")), (6022, 'l',Arrow(384, 720, 5, "left_arrow.png")),
+             (7017,'d',Arrow(640, 720, 5, "down_arrow.png")), (8016, 'u',Arrow(512, 720, 5, "up_arrow.png")),
+             (9016,"l",Arrow(384, 720, 5, "left_arrow.png")), (9512,'r',Arrow(768, 720, 5, "right_arrow.png")),
+             (10008,'l',Arrow(384, 720, 5, "left_arrow.png")),(10344,'r',Arrow(768, 720, 5, "right_arrow.png")),
+             (10508,'d',Arrow(640, 720, 5, "down_arrow.png")),(10853,'r',Arrow(768, 720, 5, "right_arrow.png")),
+             (11016,'d',Arrow(640, 720, 5, "down_arrow.png")),(12011,'u',Arrow(512, 720, 5, "up_arrow.png")),
+             (12508,'d',Arrow(640, 720, 5, "down_arrow.png")),(13003,'r',Arrow(768, 720, 5, "right_arrow.png")),
+             (13510,'l',Arrow(384, 720, 5, "left_arrow.png")),(14014,'u',Arrow(512, 720, 5, "up_arrow.png")),
+             (14339,'l',Arrow(384, 720, 5, "left_arrow.png")),(14609,'d',Arrow(640, 720, 5, "down_arrow.png")),
+             (14883,'l',Arrow(384, 720, 5, "left_arrow.png")),(15005,'u',Arrow(512, 720, 5, "up_arrow.png")),
+             (15342,'r',Arrow(768, 720, 5, "right_arrow.png")),(15508,'d',Arrow(640, 720, 5, "down_arrow.png")),
+             (15847,'u',Arrow(512, 720, 5, "up_arrow.png")),(16010,'d',Arrow(640, 720, 5, "down_arrow.png")),
+             (16346,'r',Arrow(768, 720, 5, "right_arrow.png")),(16496,'d',Arrow(640, 720, 5, "down_arrow.png")),
+             (17504,'l',Arrow(384, 720, 5, "left_arrow.png")),(18007,'r',Arrow(768, 720, 5, "right_arrow.png")),
+             (18337,'u',Arrow(512, 720, 5, "up_arrow.png")),(18519,'l',Arrow(384, 720, 5, "left_arrow.png")),
+             (20018,'u',Arrow(512, 720, 5, "up_arrow.png")),(21011,'l',Arrow(384, 720, 5, "left_arrow.png")),
+             (21517,'u',Arrow(512, 720, 5, "up_arrow.png")), (22023,'l',Arrow(384, 720, 5, "left_arrow.png")),
+             (22508,'d',Arrow(640, 720, 5, "down_arrow.png")),(23014,'u',Arrow(512, 720, 5, "up_arrow.png")),
+             (23515,'r',Arrow(768, 720, 5, "right_arrow.png")),(24010,'d',Arrow(640, 720, 5, "down_arrow.png")),
+             (25009,'l',Arrow(384, 720, 5, "left_arrow.png")),(25519,'r',Arrow(768, 720, 5, "right_arrow.png")),
+             (26018,'u',Arrow(512, 720, 5, "up_arrow.png")),(27341,'l',Arrow(384, 720, 5, "left_arrow.png")),
+             (27510,'r',Arrow(768, 720, 5, "right_arrow.png")),(27847,'d',Arrow(640, 720, 5, "down_arrow.png")),
+             (28013,'u',Arrow(512, 720, 5, "up_arrow.png")),(28013,'r',Arrow(768, 720, 5, "right_arrow.png")),
+             (28340,'d',Arrow(640, 720, 5, "down_arrow.png")),(28506,'u',Arrow(512, 720, 5, "up_arrow.png")),
+             (28855,'l',Arrow(384, 720, 5, "left_arrow.png")),(29004,'d',Arrow(640, 720, 5, "down_arrow.png")),
+             (29516,'d',Arrow(640, 720, 5, "down_arrow.png")),(30006,'u',Arrow(512, 720, 5, "up_arrow.png"))]
 happening = []
 points = 0
 
@@ -221,7 +247,7 @@ while True:
                 points -= 10
                 continue
 
-    if happening == False and elapsed_time > start_time:
+    if happening is False and elapsed_time > start_time:
         print("Game Over!")
 
     pygame.display.update()
