@@ -179,7 +179,7 @@ while True:
         pressed = (pygame.key.get_pressed(), happening[0][2].rect.y)
 
         if happening[0][1] == 'u':
-            if pressed[0][pygame.K_UP]:
+            if pressed[0][pygame.K_w]:
                 if 20 > (pressed[1] - 10) > -20:
                     happening[0][2].delete()
                     happening.pop(0)
@@ -199,7 +199,7 @@ while True:
                 continue
     if happening:
         if happening[0][1] == 'd':
-            if pressed[0][pygame.K_DOWN]:
+            if pressed[0][pygame.K_s]:
                 if 20 > (pressed[1] - 10) > -20:
                     happening[0][2].delete()
                     happening.pop(0)
@@ -219,12 +219,17 @@ while True:
                 continue
     if happening:
         if happening[0][1] == 'l':
-            if pressed[0][pygame.K_LEFT]:
+            if pressed[0][pygame.K_a]:
                 if 20 > (pressed[1] - 10) > -20:
                     happening[0][2].delete()
                     happening.pop(0)
                     print("Good!")
                     points += 10
+                else:
+                    happening[0][2].delete()
+                    happening.pop(0)
+                    print("Miss!")
+                    points -= 10
 
             if pressed[1] < -15:
                 happening[0][2].delete()
@@ -233,12 +238,17 @@ while True:
                 points -= 10
     if happening:
         if happening[0][1] == 'r':
-            if pressed[0][pygame.K_RIGHT]:
+            if pressed[0][pygame.K_d]:
                 if 20 > (pressed[1] - 10) > -20:
                     happening[0][2].delete()
                     happening.pop(0)
                     print("Good!")
                     points += 10
+                else:
+                    happening[0][2].delete()
+                    happening.pop(0)
+                    print("Miss!")
+                    points -= 10
 
             if pressed[1] < -15:
                 happening[0][2].delete()
@@ -247,8 +257,9 @@ while True:
                 points -= 10
                 continue
 
-    if happening is False and elapsed_time > start_time:
+    if len(happening) == 0 and elapsed_time > start_time:
         print("Game Over!")
+        exit()
 
     pygame.display.update()
     clock.tick(60)  # The while true loops should not run faster than 60 times per second
